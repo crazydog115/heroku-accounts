@@ -68,7 +68,7 @@ class Heroku::Command::Accounts < Heroku::Command::Base
     error("That account does not exist.") unless account_exists?(name)
 
     credentials = account(name)
-    auth.credentials = [credentials[:username], credentials[:password]]
+    auth.credentials = [credentials[:username], auth.api_key(credentials[:username], credentials[:password])]
     auth.write_credentials
   end
 
